@@ -19,4 +19,5 @@ cat result.txt
 ```
 git clone https://github.com/Noblerie/ascii_art_generator.git
 cd ascii_art_generator
+pip -r install requirements.txt
 ```
