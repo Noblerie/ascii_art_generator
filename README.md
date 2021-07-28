@@ -13,6 +13,9 @@ Here is a quick example of how to use it
 ./generator example.png
 cat result.txt
 ```
+![Schema](.github/assets/example.png)
+![Schema](.github/assets/result.png)
+
 --------
 ## Installation
 
