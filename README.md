@@ -9,7 +9,8 @@ Ascii art generator with a scale of 10 different characters
 
 Here is a quick example of how to use it
 
-```./generator example.png
+```
+./generator example.png
 cat result.txt
 ```
 --------
