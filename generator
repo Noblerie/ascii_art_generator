@@ -48,9 +48,7 @@ def main(string):
         new = path[0] + "_done.jpg"
         img = Image.open(string)
         img.convert("L").save(new)
-        print(img)
         img = Image.open(new)
-        print(img)
         generator(img)
         os.remove(new)
     else:
