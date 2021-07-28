@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+
+import sys
+import traceback
+import os.path
+from PIL import Image
+
+def help():
+    print("USAGE")
+    print("\t./generator <filepath>")
+    print("")
+    print("DESCRIPTION")
+    print("\tAscii art generator\tTurn a picture into text file")
+
+def generator(img):
+    sourceFile = open('result.txt', 'w')
+    width, height = img.size
+    for y in range(height):
+        for x in range(width):
+            l = img.getpixel((x,y))
+            if l >= 0 and l <= 25:
+                print(" ", end = '' , file = sourceFile)
+            if l > 25 and l <= 50:
+                print(".", end = '' , file = sourceFile)
+            if l > 50 and l <= 75:
+                print(":", end = '' , file = sourceFile)
+            if l > 75 and l <= 100:
+                print("-", end = '' , file = sourceFile)
+            if l > 100 and l <= 125:
+                print("=", end = '' , file = sourceFile)
+            if l > 125 and l <= 150:
+                print("+", end = '' , file = sourceFile)
+            if l > 150 and l <= 175:
+                print("*", end = '' , file = sourceFile)
+            if l > 175 and l <= 200:
+                print("#", end = '' , file = sourceFile)
+            if l > 200 and l <= 225:
+                print("%", end = '' , file = sourceFile)
+            if l > 225 and l <= 256:
+                print("@", end = '' , file = sourceFile)
+        print(file = sourceFile)
+    sourceFile.close()
+
+
+def main(string):
+    if os.path.exists(string):
+        path = string.split('.')
+        new = path[0] + "_done.jpg"
+        img = Image.open(string)
+        img.convert("L").save(new)
+        print(img)
+        img = Image.open(new)
+        print(img)
+        generator(img)
+        os.remove(new)
+    else:
+        print("Bad file", file=sys.stderr)
+        exit(84)
+
+try:
+    if len(sys.argv) == 2 and sys.argv[1] == "-h":
+        help()
+        exit(0)
+    elif len(sys.argv) == 2:
+        main(sys.argv[1])
+        exit(0)
+    else:
+        raise Exception("Invalid argument")
+except Exception as e:
+    traceback.print_exception(type(e), e, e.__traceback__)
+    exit(84)
